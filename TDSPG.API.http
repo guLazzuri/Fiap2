@@ -1,0 +1,6 @@
+@TDSPG.API_HostAddress = http://localhost:5072
+
+GET {{TDSPG.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
