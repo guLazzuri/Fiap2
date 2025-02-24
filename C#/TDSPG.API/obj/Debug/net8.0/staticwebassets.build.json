@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "OLIw/VUoqM+1D17oXsm1PnrR0vP29YwlAINyLcBao+I=",
+  "Source": "TDSPG.API",
+  "BasePath": "_content/TDSPG.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
