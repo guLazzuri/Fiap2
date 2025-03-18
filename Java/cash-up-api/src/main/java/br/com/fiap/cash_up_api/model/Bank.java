@@ -1,6 +1,5 @@
 package br.com.fiap.cash_up_api.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -10,12 +9,12 @@ public class Bank {
     private int agency;
     private String name;
     private Long cpf;
-    private Date openAccounDate;
+    private LocalDate openAccounDate;
     private Double balance;
     private Boolean isActive;
     private TypeAccount type;
 
-    public Bank(Long id, int accountNumber, int agency, String name, Long cpf, Date openAccounDate, Double balance,
+    public Bank(Long id, int accountNumber, int agency, String name, Long cpf, LocalDate openAccounDate , Double balance,
             Boolean isActive, TypeAccount type) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be empty");
@@ -23,7 +22,7 @@ public class Bank {
         if (cpf == null) {
             throw new IllegalArgumentException("CPF cannot be empty");
         }
-        if (openAccounDate == null || openAccounDate.toLocalDate().isBefore(LocalDate.now())) {
+        if (openAccounDate == null || openAccounDate.isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Open account date cannot be in the past");
         }
         if (balance == null || balance < 0) {
@@ -78,11 +77,11 @@ public class Bank {
         }
         this.cpf = cpf;
     }
-    public Date getOpenAccounDate() {
+    public LocalDate getOpenAccounDate() {
         return openAccounDate;
     }
-    public void setOpenAccounDate(Date openAccounDate) {
-        if (openAccounDate == null || openAccounDate.toLocalDate().isBefore(LocalDate.now())) {
+    public void setOpenAccounDate(LocalDate openAccounDate) {
+        if (openAccounDate == null || openAccounDate.isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Open account date cannot be in the past");
         }
         this.openAccounDate = openAccounDate;
