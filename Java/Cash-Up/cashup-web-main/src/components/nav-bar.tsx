@@ -6,7 +6,7 @@ interface NavBarProps {
 
 export default function NavBar(props: NavBarProps) {
     const { active } = props
-    const activeClass = "border-b-4 border-pprimary pb-2"
+    const activeClass = "border-b-4 border-primary pb-2"
 
     const links = [
         { text: "dashboard", href: "/dashboard" },
@@ -25,7 +25,7 @@ export default function NavBar(props: NavBarProps) {
                 )}
 
             </ul>
-            <img className="size-12 rounded-full" src="http://github.com/guLazzuri.png" alt="" />
+            <img className="size-12 rounded-full" src="http://github.com/joaocarloslima.png" alt="" />
         </nav>
     )
 }
