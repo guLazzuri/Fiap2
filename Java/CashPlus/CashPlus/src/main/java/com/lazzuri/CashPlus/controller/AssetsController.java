@@ -2,8 +2,6 @@ package com.lazzuri.CashPlus.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -25,94 +23,69 @@ import com.lazzuri.CashPlus.repository.AssetsRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/assets")
+@Slf4j
 public class AssetsController {
-
-    private final Logger log =  LoggerFactory.getLogger(AssetsController.class);
 
     @Autowired
     private AssetsRepository repository;
 
-    /**
-     * Método para listar todos os ativos de investimento.
-     * Utiliza cache para melhorar o desempenho.
-     * @return Lista de todos os ativos.
-     */
+    // Listar todos os ativos
     @GetMapping
     @Cacheable("assets")
-    @Operation(description = "Listar todas as investimentos", tags = "assets", summary = "Lista de investimentos")
+    @Operation(
+            description = "Listar todos os ativos",
+            tags = "assets",
+            summary = "Lista de Ativos"
+    )
     public List<Assets> index() {
-        log.info("Buscando todas investimentos");
+        log.info("Buscando todos os ativos");
         return repository.findAll();
     }
 
-    /**
-     * Método para criar um novo ativo de investimento.
-     * Invalida o cache após a criação.
-     * @param assets Objeto do ativo a ser criado.
-     * @return O ativo criado.
-     */
+    // Cadastrar um ativo
     @PostMapping
     @CacheEvict(value = "assets", allEntries = true)
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(responses = {
-            @ApiResponse(responseCode = "400", description = "Falha na validação")
+            @ApiResponse(responseCode = "400", description = "Falha na Validação")
     })
     public Assets create(@RequestBody @Valid Assets assets) {
-        log.info("Cadastrando investimento " + assets.getName());
+        log.info("Cadastrando ativo: " + assets.getName());
         return repository.save(assets);
     }
 
-    /**
-     * Método para buscar um ativo de investimento pelo ID.
-     * @param id ID do ativo a ser buscado.
-     * @return O ativo encontrado.
-     */
+    // Retornar um ativo pelo ID
     @GetMapping("{id}")
     public Assets get(@PathVariable Long id) {
-        log.info("Buscando investimento " + id);
+        log.info("Buscando ativo com ID: " + id);
         return getAssets(id);
     }
 
-    /**
-     * Método para deletar um ativo de investimento pelo ID.
-     * @param id ID do ativo a ser deletado.
-     */
+    // Deletar um ativo pelo ID
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
-        log.info("Apagando investimento " + id);
+        log.info("Apagando ativo com ID: " + id);
         repository.delete(getAssets(id));
     }
 
-    /**
-     * Método para atualizar um ativo de investimento pelo ID.
-     * @param id ID do ativo a ser atualizado.
-     * @param assets Objeto com os novos dados do ativo.
-     * @return O ativo atualizado.
-     */
+    // Atualizar um ativo pelo ID
     @PutMapping("{id}")
     public Assets update(@PathVariable Long id, @RequestBody @Valid Assets assets) {
-        log.info("Atualizando investimento " + id + " " + assets);
-
+        log.info("Atualizando ativo com ID: " + id + " " + assets);
         getAssets(id);
         assets.setId(id);
         return repository.save(assets);
     }
 
-    /**
-     * Método auxiliar para buscar um ativo pelo ID.
-     * Lança uma exceção caso o ativo não seja encontrado.
-     * @param id ID do ativo a ser buscado.
-     * @return O ativo encontrado.
-     */
+    // Método auxiliar para buscar um ativo pelo ID
     private Assets getAssets(Long id) {
         return repository.findById(id)
-                .orElseThrow(
-                        () -> new ResponseStatusException(
-                                HttpStatus.NOT_FOUND,
-                                "investimento não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Ativo não encontrado"));
     }
 }

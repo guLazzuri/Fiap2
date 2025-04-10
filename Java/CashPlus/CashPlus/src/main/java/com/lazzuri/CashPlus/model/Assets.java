@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -30,11 +31,10 @@ public class Assets {
     private double price;
 
     @NotBlank(message = "campo obrigatório")
-    @Pattern(regexp = "^[A-Z].*", message = "deve começar com maiúscula")
-    private String symbol;
+    @Pattern(regexp = "^[A-Za-z].*", message = "deve começar com uma letra")
+    private String icon;
 
-    @NotBlank(message = "campo obrigatório")
+    @NotNull(message = "campo obrigatório")
     @Positive(message = "A quantidade deve ser positiva")
-    @Pattern(regexp = "^[0-9].*", message = "deve começar com número")
-    private int quantity;
+    private Integer quantity;
 }

@@ -28,10 +28,10 @@ public class DatabaseSeeder {
     public void init(){
 
         var assets = List.of(
-            Assets.builder().name("Gold").symbol("Gold").price(200).quantity(5).build(),
-            Assets.builder().name("Bitcoin").symbol("BTC").price(300).quantity(2).build(),
-            Assets.builder().name("Ethereum").symbol("ETH").price(400).quantity(3).build(),
-            Assets.builder().name("Petrobras").symbol("Money").price(500).quantity(4).build()
+            Assets.builder().name("Gold").icon("Gold").price(200).quantity(5).build(),
+            Assets.builder().name("Bitcoin").icon("BTC").price(300).quantity(2).build(),
+            Assets.builder().name("Ethereum").icon("ETH").price(400).quantity(3).build(),
+            Assets.builder().name("Petrobras").icon("Money").price(500).quantity(4).build()
         );
 
         assetsRepository.saveAll(assets);
