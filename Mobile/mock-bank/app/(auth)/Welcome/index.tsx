@@ -1,4 +1,3 @@
-import { useRouter } from 'expo-router';
 import React from 'react';
 import {
     StyleSheet,
@@ -8,14 +7,13 @@ import {
 } from 'react-native';
 
 export default function WelcomeScreen() {
-  const router = useRouter();
 
   const navigateToLogin = () => {
-    router.push("/Login")
+   // router.push("/Login")
   };
 
   const navigateToSignUp = () => {
-    router.push("/Register")
+   // router.push("/Register")
   };
 
   return (

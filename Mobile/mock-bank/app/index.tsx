@@ -1,7 +1,9 @@
-import { Redirect } from "expo-router";
+import { View } from "@/components/Themed";
 
 export default function Index() {
     return(
-        <Redirect href="/(auth)/Welcome" />
+        <View>
+            
+        </View>
     )
 }
