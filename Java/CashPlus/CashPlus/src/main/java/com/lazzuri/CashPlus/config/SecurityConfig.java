@@ -21,9 +21,12 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/category/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/user/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/user").hasRole("ADMIN")
+                        
+                        .requestMatchers(HttpMethod.DELETE, "/api/user").hasAuthority("ADMIN")
+                        .requestMatchers("/swagger-ui/***").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -31,17 +34,19 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    UserDetailsService userDetailsService(){
-        return new InMemoryUserDetailsManager(
-                User.withUsername("Gustavo").password("1234").roles("USER").build(),
-                User.withUsername("Joao").password("1234").roles("ADMIN, USER").build()
+    // @Bean
+    // UserDetailsService userDetailsService(){
+    //     return new InMemoryUserDetailsManager(
+    //             User.withUsername("Gustavo").password("1234").roles("USER").build(),
+    //             User.withUsername("Joao").password("1234").roles("ADMIN, USER").build()
 
-                );
-    }
+    //             );
+    // }
 
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 }

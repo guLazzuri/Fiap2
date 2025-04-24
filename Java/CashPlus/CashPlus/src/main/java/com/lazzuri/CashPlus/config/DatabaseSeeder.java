@@ -92,7 +92,15 @@ public class DatabaseSeeder {
             .email("gulazzuri@gmail.com")
             .password(passwordEcnoder.encode("12345"))
             .role(UserRole.ADMIN)
-            .build()));        
+            .build(),
+
+            User.builder()
+            .email("maria@gmail.com")
+            .password(passwordEcnoder.encode("12345"))
+            .role(UserRole.USER)
+            .build()
+            
+            ));        
         
     }
     

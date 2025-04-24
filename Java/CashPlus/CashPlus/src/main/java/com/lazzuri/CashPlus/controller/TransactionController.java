@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lazzuri.CashPlus.model.Transaction;
 import com.lazzuri.CashPlus.repository.TransactionRepository;
-import com.lazzuri.CashPlus.specification.TransactiionSpecification;
+import com.lazzuri.CashPlus.specification.TransactionSpecification;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +30,7 @@ public class TransactionController {
 
     @GetMapping
     public Page<Transaction> index(TransactionFilter filter, @PageableDefault(size = 10, sort= "date", direction= Direction.DESC) Pageable pegeable){
-        var specification = TransactiionSpecification.withFilter(filter);
+        var specification = TransactionSpecification.withFilter(filter);
         return repository.findAll(specification, pegeable);
     }
 

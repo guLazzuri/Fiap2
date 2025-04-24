@@ -10,7 +10,7 @@ import com.lazzuri.CashPlus.model.Transaction;
 
 import jakarta.persistence.criteria.Predicate;
 
-public class TransactiionSpecification {
+public class TransactionSpecification {
 
     public static Specification<Transaction> withFilter(TransactionFilter filter){
             return (root, query, cb) -> {
