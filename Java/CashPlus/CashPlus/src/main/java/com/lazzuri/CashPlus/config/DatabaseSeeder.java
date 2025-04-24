@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.lazzuri.CashPlus.model.Assets;
 import com.lazzuri.CashPlus.model.Transaction;
 import com.lazzuri.CashPlus.model.TransactionType;
+import com.lazzuri.CashPlus.model.User;
+import com.lazzuri.CashPlus.model.UserRole;
 import com.lazzuri.CashPlus.repository.AssetsRepository;
 import com.lazzuri.CashPlus.repository.TransactionRepository;
+import com.lazzuri.CashPlus.repository.UserRepository;
 
 import jakarta.annotation.PostConstruct;
 
@@ -23,6 +27,13 @@ public class DatabaseSeeder {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @Autowired
+    private UserRepository userrepository;
+
+    @Autowired
+    private PasswordEncoder passwordEcnoder;
+
 
     @PostConstruct
     public void init(){
@@ -74,8 +85,14 @@ public class DatabaseSeeder {
                     .build());
         }
         transactionRepository.saveAll(transactions);
-        
-        
+
+
+        userrepository.saveAll(List.of(
+            User.builder()
+            .email("gulazzuri@gmail.com")
+            .password(passwordEcnoder.encode("12345"))
+            .role(UserRole.ADMIN)
+            .build()));        
         
     }
     

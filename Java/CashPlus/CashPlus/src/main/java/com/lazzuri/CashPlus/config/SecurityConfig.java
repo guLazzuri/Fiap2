@@ -34,11 +34,10 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailsService(){
         return new InMemoryUserDetailsManager(
-                User.withUsername("Gustavo")
-                        .password("1234")
-                        .roles("USER")
-                        .build()
-        );
+                User.withUsername("Gustavo").password("1234").roles("USER").build(),
+                User.withUsername("Joao").password("1234").roles("ADMIN, USER").build()
+
+                );
     }
 
     @Bean
