@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -16,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
+@Builder
 public class Assets {
 
     @Id
@@ -37,4 +38,8 @@ public class Assets {
     @NotNull(message = "campo obrigatório")
     @Positive(message = "A quantidade deve ser positiva")
     private Integer quantity;
+
+    @ManyToOne
+    private User user;
+
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lazzuri.CashPlus.repository.UserRepository;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

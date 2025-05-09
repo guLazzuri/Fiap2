@@ -19,7 +19,7 @@ import com.lazzuri.CashPlus.specification.TransactionSpecification;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("transaction")
+@RequestMapping("/transaction")
 @Slf4j
 public class TransactionController {
 

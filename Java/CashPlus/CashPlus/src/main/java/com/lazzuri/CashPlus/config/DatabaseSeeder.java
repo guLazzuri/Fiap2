@@ -29,7 +29,7 @@ public class DatabaseSeeder {
     private TransactionRepository transactionRepository;
 
     @Autowired
-    private UserRepository userrepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEcnoder;
@@ -39,7 +39,7 @@ public class DatabaseSeeder {
     public void init(){
 
         var assets = List.of(
-            Assets.builder().name("Gold").icon("Gold").price(200).quantity(5).build(),
+            Assets.builder().name("Gold").icon("Gold").price(200).quantity(5).user(userRepository.findByEmail("joao").orElseThrow()).build(),
             Assets.builder().name("Bitcoin").icon("BTC").price(300).quantity(2).build(),
             Assets.builder().name("Ethereum").icon("ETH").price(400).quantity(3).build(),
             Assets.builder().name("Petrobras").icon("Money").price(500).quantity(4).build()
@@ -87,21 +87,19 @@ public class DatabaseSeeder {
         transactionRepository.saveAll(transactions);
 
 
-        userrepository.saveAll(List.of(
-            User.builder()
-            .email("gulazzuri@gmail.com")
-            .password(passwordEcnoder.encode("12345"))
-            .role(UserRole.ADMIN)
-            .build(),
 
-            User.builder()
-            .email("maria@gmail.com")
-            .password(passwordEcnoder.encode("12345"))
-            .role(UserRole.USER)
-            .build()
-            
-            ));        
-        
+        userRepository.saveAll(List.of(
+                User.builder()
+                        .email("joao")
+                        .password(passwordEcnoder.encode("12345"))
+                        .role(UserRole.ADMIN)
+                        .build(),
+
+                User.builder()
+                        .email("maria")
+                        .password(passwordEcnoder.encode("12345"))
+                        .role(UserRole.USER)
+                        .build()));
     }
     
 }
