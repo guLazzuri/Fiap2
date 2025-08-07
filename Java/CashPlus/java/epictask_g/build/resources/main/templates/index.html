@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Epicpower</title>
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 30px auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+        }
+        th {
+            background: #3b82f6;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #e0e7ef;
+        }
+        tr:hover {
+            background: #bae6fd;
+        }
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-top: 40px;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Poderes Inúteis</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Nível de Inutilidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="power : ${powers}">
+            <td th:text="${power.nome}"></td>
+            <td th:text="${power.descricao}"></td>
+            <td th:text="${power.nivelInutilidade}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
