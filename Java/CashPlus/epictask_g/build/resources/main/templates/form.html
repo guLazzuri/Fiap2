@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dracula">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Cadastro de UFO</title>
+</head>
+<body>
+
+<h1 class="text-2xl font-bold text-primary p-8">Cadastro de UFO</h1>
+
+<main class="grid place-items-center gap-4 p-8">
+    <form class="w-full max-w-md" method="post">
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Localização</legend>
+            <input name="location" type="text" class="input" placeholder="Local do avistamento" required />
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Formato</legend>
+            <select name="shape" class="select" required>
+                <option value="">Selecione</option>
+                <option value="DISC">Disco</option>
+                <option value="SPHERE">Esfera</option>
+                <option value="TRIANGLE">Triângulo</option>
+                <option value="OTHER">Outro</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Data e Hora</legend>
+            <input name="dateAndTime" type="datetime-local" class="input" required />
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Quantidade</legend>
+            <input name="quantity" type="number" class="input" min="1" value="1" required />
+        </fieldset>
+
+        <div class="space-x-4">
+            <a href="/ufo" class="btn btn-neutral">Cancelar</a>
+            <button class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>
