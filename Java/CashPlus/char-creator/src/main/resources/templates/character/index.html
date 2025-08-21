@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{character.list.title}"></title>
+    <style>
+        body {
+            background: #e9fbe5;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #1b3c1b;
+            margin: 0;
+            min-height: 100vh;
+        }
+        header {
+            background: #1b3c1b;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            border-bottom: 3px solid #4caf50;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav a {
+            color: #4caf50;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #1b3c1b;
+            background: #a5e6a1;
+            border-radius: 5px;
+            padding: 0.2rem 0.5rem;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 80vh;
+            padding: 2rem 0;
+        }
+        table {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 32px rgba(76,175,80,0.10);
+            width: 100%;
+            max-width: 1100px;
+            border-collapse: collapse;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 1rem 1.2rem;
+            text-align: left;
+        }
+        th {
+            background: #4caf50;
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background: #f6fff6;
+        }
+        tr:nth-child(odd) {
+            background: #e9fbe5;
+        }
+        td {
+            color: #1b3c1b;
+            font-size: 1rem;
+        }
+        @media (max-width: 800px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th, td {
+                padding: 0.7rem 0.5rem;
+            }
+            th {
+                background: #4caf50;
+                color: #fff;
+            }
+            tr {
+                margin-bottom: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 th:text="#{character.list.heading}"></h1>
+    <nav>
+        <a href="?lang=pt-BR">🇧🇷 Português</a>
+        <a href="?lang=en-US">🇺🇸 English</a>
+        <a href="?lang=es-ES">🇪🇸 Español</a>
+        <a href="/characters/new" th:text="#{character.list.new}"></a>
+    </nav>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th th:text="#{character.name.label}"></th>
+            <th th:text="#{character.species.label}"></th>
+            <th th:text="#{character.startingLevel.label}"></th>
+            <th th:text="#{character.specialAbility.label}"></th>
+            <th th:text="#{character.bio.label}"></th>
+            <th th:text="#{character.creationDate.label}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="character : ${characters}">
+            <td th:text="${character.name}"></td>
+            <td th:text="${character.species}"></td>
+            <td th:text="${character.startingLevel}"></td>
+            <td th:text="${character.specialAbility}"></td>
+            <td th:text="${character.bio}"></td>
+            <td th:text="${character.creationDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
