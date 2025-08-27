@@ -65,6 +65,6 @@ npx expo start
 ```
 
 ## 👤 Autor
-Leandro Correia
+Gustavo Lazzuri
 
 Projeto desenvolvido para fins acadêmicos e de prática com React Native.
